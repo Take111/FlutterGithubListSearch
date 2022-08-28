@@ -28,6 +28,7 @@ mixin _$Repository {
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get star => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +47,8 @@ abstract class $RepositoryCopyWith<$Res> {
       User owner,
       @JsonKey(name: 'full_name') String? fullName,
       String? description,
-      @JsonKey(name: 'stargazers_count') int star});
+      @JsonKey(name: 'stargazers_count') int star,
+      String? language});
 
   $UserCopyWith<$Res> get owner;
 }
@@ -67,6 +69,7 @@ class _$RepositoryCopyWithImpl<$Res> implements $RepositoryCopyWith<$Res> {
     Object? fullName = freezed,
     Object? description = freezed,
     Object? star = freezed,
+    Object? language = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -93,6 +96,10 @@ class _$RepositoryCopyWithImpl<$Res> implements $RepositoryCopyWith<$Res> {
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
               as int,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -117,7 +124,8 @@ abstract class _$$_RepositoryCopyWith<$Res>
       User owner,
       @JsonKey(name: 'full_name') String? fullName,
       String? description,
-      @JsonKey(name: 'stargazers_count') int star});
+      @JsonKey(name: 'stargazers_count') int star,
+      String? language});
 
   @override
   $UserCopyWith<$Res> get owner;
@@ -141,6 +149,7 @@ class __$$_RepositoryCopyWithImpl<$Res> extends _$RepositoryCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? description = freezed,
     Object? star = freezed,
+    Object? language = freezed,
   }) {
     return _then(_$_Repository(
       id: id == freezed
@@ -167,6 +176,10 @@ class __$$_RepositoryCopyWithImpl<$Res> extends _$RepositoryCopyWithImpl<$Res>
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
               as int,
+      language: language == freezed
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -180,7 +193,8 @@ class _$_Repository extends _Repository {
       required this.owner,
       @JsonKey(name: 'full_name') this.fullName,
       this.description,
-      @JsonKey(name: 'stargazers_count') required this.star})
+      @JsonKey(name: 'stargazers_count') required this.star,
+      this.language})
       : super._();
 
   factory _$_Repository.fromJson(Map<String, dynamic> json) =>
@@ -200,10 +214,12 @@ class _$_Repository extends _Repository {
   @override
   @JsonKey(name: 'stargazers_count')
   final int star;
+  @override
+  final String? language;
 
   @override
   String toString() {
-    return 'Repository(id: $id, name: $name, owner: $owner, fullName: $fullName, description: $description, star: $star)';
+    return 'Repository(id: $id, name: $name, owner: $owner, fullName: $fullName, description: $description, star: $star, language: $language)';
   }
 
   @override
@@ -217,7 +233,8 @@ class _$_Repository extends _Repository {
             const DeepCollectionEquality().equals(other.fullName, fullName) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.star, star));
+            const DeepCollectionEquality().equals(other.star, star) &&
+            const DeepCollectionEquality().equals(other.language, language));
   }
 
   @JsonKey(ignore: true)
@@ -229,7 +246,8 @@ class _$_Repository extends _Repository {
       const DeepCollectionEquality().hash(owner),
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(star));
+      const DeepCollectionEquality().hash(star),
+      const DeepCollectionEquality().hash(language));
 
   @JsonKey(ignore: true)
   @override
@@ -246,13 +264,13 @@ class _$_Repository extends _Repository {
 
 abstract class _Repository extends Repository {
   const factory _Repository(
-          {required final int id,
-          required final String name,
-          required final User owner,
-          @JsonKey(name: 'full_name') final String? fullName,
-          final String? description,
-          @JsonKey(name: 'stargazers_count') required final int star}) =
-      _$_Repository;
+      {required final int id,
+      required final String name,
+      required final User owner,
+      @JsonKey(name: 'full_name') final String? fullName,
+      final String? description,
+      @JsonKey(name: 'stargazers_count') required final int star,
+      final String? language}) = _$_Repository;
   const _Repository._() : super._();
 
   factory _Repository.fromJson(Map<String, dynamic> json) =
@@ -272,6 +290,8 @@ abstract class _Repository extends Repository {
   @override
   @JsonKey(name: 'stargazers_count')
   int get star;
+  @override
+  String? get language;
   @override
   @JsonKey(ignore: true)
   _$$_RepositoryCopyWith<_$_Repository> get copyWith =>

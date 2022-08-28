@@ -19,7 +19,7 @@ class GithubRepositoryClient
 
   Future<void> fetchRepositires(String word) async {
     final response = await http.get(
-      Uri.parse('https://api.github.com/search/repositories?q=aaa'),
+      Uri.parse('https://api.github.com/search/repositories?q=$word'),
     );
 
     if (response.statusCode == 200) {

@@ -21,7 +21,6 @@ class GithubListPage extends HookConsumerWidget {
                   searchText.value = value;
                 },
                 onEditingComplete: () {
-                  print("onEditingComplete");
                   isSearch.value = false;
                   FocusManager.instance.primaryFocus?.unfocus();
 
@@ -50,6 +49,7 @@ class GithubListPage extends HookConsumerWidget {
           return ListView.separated(
             itemBuilder: (_, index) {
               final item = items[index];
+              final language = item.language ?? 'none';
               return Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -63,7 +63,7 @@ class GithubListPage extends HookConsumerWidget {
                           child: ClipRRect(
                             child: FadeInImage.memoryNetwork(
                               placeholder: kTransparentImage,
-                              image: 'https://picsum.photos/250?image=9',
+                              image: item.owner.avatarUrl ?? '',
                             ),
                           ),
                         ),
@@ -71,8 +71,8 @@ class GithubListPage extends HookConsumerWidget {
                           width: 8,
                         ),
                         Text(
-                          'apple',
-                          style: TextStyle(
+                          item.owner.login,
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
@@ -86,21 +86,23 @@ class GithubListPage extends HookConsumerWidget {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                'Tetris',
-                                style: TextStyle(
+                                item.name,
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 8,
                               ),
-                              Text(
-                                'A C implementation of Tetris using Pennsim through LC4',
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              item.description == null
+                                  ? const SizedBox(height: 0)
+                                  : Text(
+                                      item.description ?? '',
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                             ],
                           ),
                         ),
@@ -110,27 +112,27 @@ class GithubListPage extends HookConsumerWidget {
                       height: 8,
                     ),
                     Row(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.star_border_outlined,
                           size: 18,
                           color: Colors.grey,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4,
                         ),
                         Text(
-                          '1000',
-                          style: TextStyle(
+                          '${item.star}',
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Text(
-                          'Swift',
-                          style: TextStyle(
+                          language,
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
@@ -145,7 +147,7 @@ class GithubListPage extends HookConsumerWidget {
                 height: 1,
               );
             },
-            itemCount: 3,
+            itemCount: items.length,
           );
         },
         error: (error, _) {

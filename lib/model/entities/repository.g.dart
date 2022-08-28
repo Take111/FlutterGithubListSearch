@@ -14,6 +14,7 @@ _$_Repository _$$_RepositoryFromJson(Map<String, dynamic> json) =>
       fullName: json['full_name'] as String?,
       description: json['description'] as String?,
       star: json['stargazers_count'] as int,
+      language: json['language'] as String?,
     );
 
 Map<String, dynamic> _$$_RepositoryToJson(_$_Repository instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_RepositoryToJson(_$_Repository instance) =>
       'full_name': instance.fullName,
       'description': instance.description,
       'stargazers_count': instance.star,
+      'language': instance.language,
     };
