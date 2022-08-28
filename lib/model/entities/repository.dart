@@ -15,6 +15,7 @@ class Repository with _$Repository {
     @JsonKey(name: 'full_name') String? fullName,
     String? description,
     @JsonKey(name: 'stargazers_count') required int star,
+    String? language,
   }) = _Repository;
   const Repository._();
 
