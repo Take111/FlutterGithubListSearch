@@ -17,7 +17,6 @@ dependencies:
   riverpod: ^1.0.3  
   transparent_image: ^2.0.0
   json_annotation: ^4.6.0
-  dio: ^4.0.6
   http: ^0.13.5
 
 dev_dependencies:
