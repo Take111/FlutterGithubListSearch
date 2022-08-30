@@ -1,16 +1,22 @@
 # github_searcher_flutter
 
-A new Flutter project.
+GithubのRepositoryを検索するサンプルアプリです。
 
-## Getting Started
+https://user-images.githubusercontent.com/46619995/187563372-b430c5f2-fb1c-4f22-b235-2ea568b60c24.mp4
 
-This project is a starting point for a Flutter application.
+### 使っているもの
+- Riverpod
+- Freezed
+- flutter_hooks
 
-A few resources to get you started if this is your first Flutter project:
+### 今ある機能
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Repository検索
+- 一覧表示
+- 詳細ページ
+- 空、Errorだった時の表現
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### 実装予定
+- APIを叩くところを抽象化する
+- Unitテストの実装
+- ページング処理
