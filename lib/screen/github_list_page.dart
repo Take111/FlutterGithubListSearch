@@ -50,7 +50,10 @@ class GithubListPage extends HookConsumerWidget {
         data: (items) {
           return items.isEmpty
               ? const Center(
-                  child: Text('Repository is not found'),
+                  child: Text(
+                    'Repositoryがないよ　\n右上の検索ボタンから検索するか\n別の言葉で検索してみてね',
+                    textAlign: TextAlign.center,
+                  ),
                 )
               : ListView.separated(
                   itemBuilder: (_, index) {
@@ -169,7 +172,11 @@ class GithubListPage extends HookConsumerWidget {
                 );
         },
         error: (error, _) {
-          print("error has occured $error");
+          return const Center(
+            child: Text(
+              'Errorが発生しました 再度やり直してください',
+            ),
+          );
         },
         loading: () {
           return const Center(

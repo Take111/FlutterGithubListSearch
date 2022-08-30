@@ -15,9 +15,10 @@ final githubRepositoryClientProvider = StateNotifierProvider.autoDispose<
 
 class GithubRepositoryClient
     extends StateNotifier<AsyncValue<List<Repository>>> {
-  GithubRepositoryClient() : super(const AsyncValue.loading());
+  GithubRepositoryClient() : super(const AsyncValue.data([]));
 
   Future<void> fetchRepositires(String word) async {
+    state = const AsyncLoading();
     final response = await http.get(
       Uri.parse('https://api.github.com/search/repositories?q=$word'),
     );
