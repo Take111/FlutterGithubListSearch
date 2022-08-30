@@ -50,7 +50,10 @@ class GithubListPage extends HookConsumerWidget {
         data: (items) {
           return items.isEmpty
               ? const Center(
-                  child: Text('何か検索してね'),
+                  child: Text(
+                    'Repositoryがないよ　\n右上の検索ボタンから検索するか\n別の言葉で検索してみてね',
+                    textAlign: TextAlign.center,
+                  ),
                 )
               : ListView.separated(
                   itemBuilder: (_, index) {
