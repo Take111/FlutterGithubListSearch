@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:github_searcher_flutter/model/client/github_api_client.dart';
-import 'package:github_searcher_flutter/model/entities/repository.dart';
+import 'package:github_searcher_flutter/model/entity/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final githubRepositoryControllerProvider = StateNotifierProvider.autoDispose<

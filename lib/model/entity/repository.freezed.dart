@@ -28,6 +28,12 @@ mixin _$Repository {
   String? get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get star => throw _privateConstructorUsedError;
+  @JsonKey(name: 'watchers_count')
+  int get watchersCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'forks_count')
+  int get forksCount => throw _privateConstructorUsedError;
+  @JsonKey(name: 'open_issues')
+  int get issues => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,6 +54,9 @@ abstract class $RepositoryCopyWith<$Res> {
       @JsonKey(name: 'full_name') String? fullName,
       String? description,
       @JsonKey(name: 'stargazers_count') int star,
+      @JsonKey(name: 'watchers_count') int watchersCount,
+      @JsonKey(name: 'forks_count') int forksCount,
+      @JsonKey(name: 'open_issues') int issues,
       String? language});
 
   $UserCopyWith<$Res> get owner;
@@ -69,6 +78,9 @@ class _$RepositoryCopyWithImpl<$Res> implements $RepositoryCopyWith<$Res> {
     Object? fullName = freezed,
     Object? description = freezed,
     Object? star = freezed,
+    Object? watchersCount = freezed,
+    Object? forksCount = freezed,
+    Object? issues = freezed,
     Object? language = freezed,
   }) {
     return _then(_value.copyWith(
@@ -95,6 +107,18 @@ class _$RepositoryCopyWithImpl<$Res> implements $RepositoryCopyWith<$Res> {
       star: star == freezed
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
+              as int,
+      watchersCount: watchersCount == freezed
+          ? _value.watchersCount
+          : watchersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      forksCount: forksCount == freezed
+          ? _value.forksCount
+          : forksCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      issues: issues == freezed
+          ? _value.issues
+          : issues // ignore: cast_nullable_to_non_nullable
               as int,
       language: language == freezed
           ? _value.language
@@ -125,6 +149,9 @@ abstract class _$$_RepositoryCopyWith<$Res>
       @JsonKey(name: 'full_name') String? fullName,
       String? description,
       @JsonKey(name: 'stargazers_count') int star,
+      @JsonKey(name: 'watchers_count') int watchersCount,
+      @JsonKey(name: 'forks_count') int forksCount,
+      @JsonKey(name: 'open_issues') int issues,
       String? language});
 
   @override
@@ -149,6 +176,9 @@ class __$$_RepositoryCopyWithImpl<$Res> extends _$RepositoryCopyWithImpl<$Res>
     Object? fullName = freezed,
     Object? description = freezed,
     Object? star = freezed,
+    Object? watchersCount = freezed,
+    Object? forksCount = freezed,
+    Object? issues = freezed,
     Object? language = freezed,
   }) {
     return _then(_$_Repository(
@@ -176,6 +206,18 @@ class __$$_RepositoryCopyWithImpl<$Res> extends _$RepositoryCopyWithImpl<$Res>
           ? _value.star
           : star // ignore: cast_nullable_to_non_nullable
               as int,
+      watchersCount: watchersCount == freezed
+          ? _value.watchersCount
+          : watchersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      forksCount: forksCount == freezed
+          ? _value.forksCount
+          : forksCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      issues: issues == freezed
+          ? _value.issues
+          : issues // ignore: cast_nullable_to_non_nullable
+              as int,
       language: language == freezed
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
@@ -194,6 +236,9 @@ class _$_Repository extends _Repository {
       @JsonKey(name: 'full_name') this.fullName,
       this.description,
       @JsonKey(name: 'stargazers_count') required this.star,
+      @JsonKey(name: 'watchers_count') required this.watchersCount,
+      @JsonKey(name: 'forks_count') required this.forksCount,
+      @JsonKey(name: 'open_issues') required this.issues,
       this.language})
       : super._();
 
@@ -215,11 +260,20 @@ class _$_Repository extends _Repository {
   @JsonKey(name: 'stargazers_count')
   final int star;
   @override
+  @JsonKey(name: 'watchers_count')
+  final int watchersCount;
+  @override
+  @JsonKey(name: 'forks_count')
+  final int forksCount;
+  @override
+  @JsonKey(name: 'open_issues')
+  final int issues;
+  @override
   final String? language;
 
   @override
   String toString() {
-    return 'Repository(id: $id, name: $name, owner: $owner, fullName: $fullName, description: $description, star: $star, language: $language)';
+    return 'Repository(id: $id, name: $name, owner: $owner, fullName: $fullName, description: $description, star: $star, watchersCount: $watchersCount, forksCount: $forksCount, issues: $issues, language: $language)';
   }
 
   @override
@@ -234,6 +288,11 @@ class _$_Repository extends _Repository {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.star, star) &&
+            const DeepCollectionEquality()
+                .equals(other.watchersCount, watchersCount) &&
+            const DeepCollectionEquality()
+                .equals(other.forksCount, forksCount) &&
+            const DeepCollectionEquality().equals(other.issues, issues) &&
             const DeepCollectionEquality().equals(other.language, language));
   }
 
@@ -247,6 +306,9 @@ class _$_Repository extends _Repository {
       const DeepCollectionEquality().hash(fullName),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(star),
+      const DeepCollectionEquality().hash(watchersCount),
+      const DeepCollectionEquality().hash(forksCount),
+      const DeepCollectionEquality().hash(issues),
       const DeepCollectionEquality().hash(language));
 
   @JsonKey(ignore: true)
@@ -270,6 +332,9 @@ abstract class _Repository extends Repository {
       @JsonKey(name: 'full_name') final String? fullName,
       final String? description,
       @JsonKey(name: 'stargazers_count') required final int star,
+      @JsonKey(name: 'watchers_count') required final int watchersCount,
+      @JsonKey(name: 'forks_count') required final int forksCount,
+      @JsonKey(name: 'open_issues') required final int issues,
       final String? language}) = _$_Repository;
   const _Repository._() : super._();
 
@@ -290,6 +355,15 @@ abstract class _Repository extends Repository {
   @override
   @JsonKey(name: 'stargazers_count')
   int get star;
+  @override
+  @JsonKey(name: 'watchers_count')
+  int get watchersCount;
+  @override
+  @JsonKey(name: 'forks_count')
+  int get forksCount;
+  @override
+  @JsonKey(name: 'open_issues')
+  int get issues;
   @override
   String? get language;
   @override

@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:github_searcher_flutter/model/entities/repository.dart';
+import 'package:github_searcher_flutter/model/entity/repository.dart';
 
 part 'repositories.freezed.dart';
 part 'repositories.g.dart';
