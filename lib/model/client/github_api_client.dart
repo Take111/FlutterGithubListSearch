@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:github_searcher_flutter/model/entities/repositories.dart';
+import 'package:github_searcher_flutter/model/entity/repositories.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:retrofit/retrofit.dart';
 

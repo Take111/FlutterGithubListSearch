@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:github_searcher_flutter/model/entities/user.dart';
+import 'package:github_searcher_flutter/model/entity/user.dart';
 
 part 'repository.freezed.dart';
 part 'repository.g.dart';
@@ -15,6 +15,9 @@ class Repository with _$Repository {
     @JsonKey(name: 'full_name') String? fullName,
     String? description,
     @JsonKey(name: 'stargazers_count') required int star,
+    @JsonKey(name: 'watchers_count') required int watchersCount,
+    @JsonKey(name: 'forks_count') required int forksCount,
+    @JsonKey(name: 'open_issues') required int issues,
     String? language,
   }) = _Repository;
   const Repository._();
