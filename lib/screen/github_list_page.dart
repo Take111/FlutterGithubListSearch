@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:github_searcher_flutter/model/entities/client/github_repository_client.dart';
+import 'package:github_searcher_flutter/model/client/github_repository_client.dart';
 import 'package:github_searcher_flutter/screen/github_detail_page.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -13,7 +13,7 @@ class GithubListPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isSearch = useState(false);
     final searchText = useState('');
-    final repositories = ref.watch(githubRepositoryClientProvider);
+    final repositories = ref.watch(githubRepositoryControllerProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -27,8 +27,8 @@ class GithubListPage extends HookConsumerWidget {
                   FocusManager.instance.primaryFocus?.unfocus();
 
                   ref
-                      .read(githubRepositoryClientProvider.notifier)
-                      .fetchRepositires(searchText.value);
+                      .read(githubRepositoryControllerProvider.notifier)
+                      .fetchRepositories(searchText.value, null);
                 },
                 cursorColor: Colors.white,
                 textInputAction: TextInputAction.search,
