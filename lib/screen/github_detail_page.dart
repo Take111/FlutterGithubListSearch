@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:github_searcher_flutter/model/entities/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class GithubDetailPage extends HookConsumerWidget {
@@ -14,7 +14,9 @@ class GithubDetailPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(repository.name),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -32,10 +34,13 @@ class GithubDetailPage extends HookConsumerWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 4,
+                  width: 8,
                 ),
                 Text(repository.owner.login),
               ],
+            ),
+            const SizedBox(
+              height: 16,
             ),
             Text(
               repository.name,
@@ -49,6 +54,8 @@ class GithubDetailPage extends HookConsumerWidget {
                 : Text(
                     repository.description ?? '',
                     overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
                   ),
             const SizedBox(
               height: 16,
