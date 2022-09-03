@@ -118,7 +118,7 @@ class IconWithText extends StatelessWidget {
           color: Colors.grey,
         ),
         const SizedBox(
-          width: 4,
+          width: 8,
         ),
         Row(
           children: [
