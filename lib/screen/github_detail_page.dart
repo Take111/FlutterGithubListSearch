@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:github_searcher_flutter/model/entities/repository.dart';
+import 'package:github_searcher_flutter/model/entity/repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -37,6 +37,12 @@ class GithubDetailPage extends HookConsumerWidget {
                   width: 8,
                 ),
                 Text(repository.owner.login),
+                const Spacer(),
+                IconWithText(
+                  icon: Icons.star_border_outlined,
+                  value: repository.star.toString(),
+                  unitText: 'Star',
+                ),
               ],
             ),
             const SizedBox(
@@ -62,40 +68,84 @@ class GithubDetailPage extends HookConsumerWidget {
             ),
             Row(
               children: [
-                const Icon(
-                  Icons.star_border_outlined,
-                  size: 20,
-                  color: Colors.grey,
+                const Spacer(),
+                IconWithText(
+                  icon: Icons.visibility,
+                  value: repository.watchersCount.toString(),
+                  unitText: 'Watch',
                 ),
-                const SizedBox(
-                  width: 4,
+                const Spacer(),
+                IconWithText(
+                  icon: Icons.assessment,
+                  value: repository.issues.toString(),
+                  unitText: 'Issue',
                 ),
-                Row(
-                  children: [
-                    Text(
-                      '${repository.star}',
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 4,
-                    ),
-                    const Text(
-                      'Star',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                )
+                const Spacer(),
+                IconWithText(
+                  icon: Icons.fork_right,
+                  value: repository.forksCount.toString(),
+                  unitText: 'Fork',
+                ),
+                const Spacer(),
               ],
-            )
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class IconWithText extends StatelessWidget {
+  const IconWithText({
+    super.key,
+    required this.icon,
+    required this.value,
+    required this.unitText,
+  });
+
+  final IconData icon;
+  final String value;
+  final String? unitText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 20,
+          color: Colors.grey,
+        ),
+        const SizedBox(
+          width: 4,
+        ),
+        Row(
+          children: [
+            Text(
+              value,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            unitText == null
+                ? const SizedBox(
+                    width: 0,
+                  )
+                : Text(
+                    unitText ?? '',
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+          ],
+        )
+      ],
     );
   }
 }
