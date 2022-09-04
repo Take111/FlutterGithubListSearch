@@ -15,19 +15,36 @@ class GithubRepositoryController
   GithubRepositoryController(this._read) : super(const AsyncValue.data([]));
 
   final Reader _read;
+  String? word;
+  int page = 1;
 
   GithubSearchApiRepository get _githubSearchApiRepository =>
       _read(githubSearchApiRepositoryProvider);
 
-  Future<void> fetchRepositories(String word, int? page) async {
+  Future<void> fetchRepositories(String word) async {
     state = const AsyncLoading();
-
+    this.word = word;
+    page = 1;
     final result = await AsyncValue.guard(() async {
       final data = await _githubSearchApiRepository.fetchRepositories(
         word: word,
         page: 1,
       );
       return data;
+    });
+    state = result;
+  }
+
+  Future<void> fetchMore() async {
+    page += 1;
+
+    final result = await AsyncValue.guard(() async {
+      final data = await _githubSearchApiRepository.fetchRepositories(
+        word: word ?? '',
+        page: page,
+      );
+      final currentValue = state.value ?? [];
+      return currentValue + data;
     });
     state = result;
   }
