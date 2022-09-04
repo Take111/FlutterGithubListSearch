@@ -49,23 +49,24 @@ class GithubListPage extends HookConsumerWidget {
           )
         ],
       ),
-      body: repositories.when(
-        data: (items) {
-          return SmartRefresher(
-            controller: refreshController.value,
-            footer: CustomFooter(
-              builder: (context, mode) {
-                return const CupertinoActivityIndicator();
-              },
-            ),
-            enablePullUp: true,
-            onLoading: () async {
-              await ref
-                  .read(githubRepositoryControllerProvider.notifier)
-                  .fetchMore();
-              refreshController.value.loadComplete();
-            },
-            child: items.isEmpty
+      body: SmartRefresher(
+        enablePullDown: false,
+        enablePullUp: true,
+        controller: refreshController.value,
+        footer: CustomFooter(
+          builder: (context, mode) {
+            return const CupertinoActivityIndicator();
+          },
+        ),
+        onLoading: () async {
+          await ref
+              .read(githubRepositoryControllerProvider.notifier)
+              .fetchMore();
+          refreshController.value.loadComplete();
+        },
+        child: repositories.when(
+          data: (items) {
+            return items.isEmpty
                 ? const Center(
                     child: Text(
                       'Repositoryがないよ　\n右上の検索ボタンから検索するか\n別の言葉で検索してみてね',
@@ -187,21 +188,21 @@ class GithubListPage extends HookConsumerWidget {
                       );
                     },
                     itemCount: items.length,
-                  ),
-          );
-        },
-        error: (error, _) {
-          return const Center(
-            child: Text(
-              'Errorが発生しました 再度やり直してください',
-            ),
-          );
-        },
-        loading: () {
-          return const Center(
-            child: CupertinoActivityIndicator(),
-          );
-        },
+                  );
+          },
+          error: (error, _) {
+            return const Center(
+              child: Text(
+                'Errorが発生しました 再度やり直してください',
+              ),
+            );
+          },
+          loading: () {
+            return const Center(
+              child: CupertinoActivityIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
