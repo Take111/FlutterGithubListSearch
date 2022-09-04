@@ -31,7 +31,10 @@ class GithubListPage extends HookConsumerWidget {
 
                   ref
                       .read(githubRepositoryControllerProvider.notifier)
-                      .fetchRepositories(searchText.value);
+                      .fetchRepositories(
+                        word: searchText.value,
+                        needToLoadState: true,
+                      );
                 },
                 cursorColor: Colors.white,
                 textInputAction: TextInputAction.search,
@@ -50,14 +53,27 @@ class GithubListPage extends HookConsumerWidget {
         ],
       ),
       body: SmartRefresher(
-        enablePullDown: false,
         enablePullUp: true,
         controller: refreshController.value,
+        header: CustomHeader(
+          builder: (context, mode) {
+            return const CupertinoActivityIndicator();
+          },
+        ),
         footer: CustomFooter(
           builder: (context, mode) {
             return const CupertinoActivityIndicator();
           },
         ),
+        onRefresh: () async {
+          await ref
+              .read(githubRepositoryControllerProvider.notifier)
+              .fetchRepositories(
+                word: searchText.value,
+                needToLoadState: false,
+              );
+          refreshController.value.refreshCompleted();
+        },
         onLoading: () async {
           await ref
               .read(githubRepositoryControllerProvider.notifier)

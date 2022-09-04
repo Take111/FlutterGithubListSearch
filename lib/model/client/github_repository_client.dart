@@ -21,8 +21,13 @@ class GithubRepositoryController
   GithubSearchApiRepository get _githubSearchApiRepository =>
       _read(githubSearchApiRepositoryProvider);
 
-  Future<void> fetchRepositories(String word) async {
-    state = const AsyncLoading();
+  Future<void> fetchRepositories({
+    required String word,
+    required bool needToLoadState,
+  }) async {
+    if (needToLoadState) {
+      state = const AsyncLoading();
+    }
     this.word = word;
     page = 1;
     final result = await AsyncValue.guard(() async {
