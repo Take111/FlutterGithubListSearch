@@ -17,6 +17,6 @@ https://user-images.githubusercontent.com/46619995/187563372-b430c5f2-fb1c-4f22-
 - 空、Errorだった時の表現
 
 ### 実装予定
-- APIを叩くところを抽象化する
+- ~~APIを叩くところを抽象化する~~
 - Unitテストの実装
-- ページング処理
+- ~~ページング処理~~
