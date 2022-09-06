@@ -7,24 +7,32 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:github_searcher_flutter/model/entity/repositories.dart';
+import 'package:github_searcher_flutter/model/entity/repository.dart';
+import 'package:github_searcher_flutter/model/entity/user.dart';
+import 'package:mockito/mockito.dart';
 
-import 'package:github_searcher_flutter/main.dart';
+import 'mock.mocks.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  final mockRepository = MockGithubSearchApiRepository();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  final repositoryList = <Repository>[
+    const Repository(
+      id: 0,
+      name: 'Swift',
+      owner: User(login: 'Apple'),
+      star: 0,
+      watchersCount: 0,
+      forksCount: 0,
+      issues: 0,
+    )
+  ];
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  test('success fetchRepositories', () async {
+    when(mockRepository.fetchRepositories())
+        .thenAnswer((realInvocation) async => repositoryList);
+    expect(await mockRepository.fetchRepositories(), repositoryList);
+    verify(mockRepository.fetchRepositories());
   });
 }
