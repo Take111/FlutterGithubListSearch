@@ -8,6 +8,7 @@ https://user-images.githubusercontent.com/46619995/187563372-b430c5f2-fb1c-4f22-
 - Riverpod
 - Freezed
 - flutter_hooks
+- mockito
 
 ### 今ある機能
 
@@ -18,5 +19,7 @@ https://user-images.githubusercontent.com/46619995/187563372-b430c5f2-fb1c-4f22-
 
 ### 実装予定
 - ~~APIを叩くところを抽象化する~~
-- Unitテストの実装
+- ~~Unitテストの実装~~
 - ~~ページング処理~~
+- ログイン機能
+- Repositoryお気に入り機能
