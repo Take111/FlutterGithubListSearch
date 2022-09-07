@@ -52,44 +52,44 @@ class GithubListPage extends HookConsumerWidget {
           )
         ],
       ),
-      body: SmartRefresher(
-        enablePullUp: true,
-        controller: refreshController.value,
-        header: CustomHeader(
-          builder: (context, mode) {
-            return const CupertinoActivityIndicator();
-          },
-        ),
-        footer: CustomFooter(
-          builder: (context, mode) {
-            return const CupertinoActivityIndicator();
-          },
-        ),
-        onRefresh: () async {
-          await ref
-              .read(githubRepositoryControllerProvider.notifier)
-              .fetchRepositories(
-                word: searchText.value,
-                needToLoadState: false,
-              );
-          refreshController.value.refreshCompleted();
-        },
-        onLoading: () async {
-          await ref
-              .read(githubRepositoryControllerProvider.notifier)
-              .fetchMore();
-          refreshController.value.loadComplete();
-        },
-        child: repositories.when(
-          data: (items) {
-            return items.isEmpty
-                ? const Center(
-                    child: Text(
-                      'Repositoryがないよ　\n右上の検索ボタンから検索するか\n別の言葉で検索してみてね',
-                      textAlign: TextAlign.center,
-                    ),
-                  )
-                : ListView.separated(
+      body: repositories.when(
+        data: (items) {
+          return items.isEmpty
+              ? const Center(
+                  child: Text(
+                    'Repositoryがないよ　\n右上の検索ボタンから検索するか\n別の言葉で検索してみてね',
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              : SmartRefresher(
+                  enablePullUp: true,
+                  controller: refreshController.value,
+                  header: CustomHeader(
+                    builder: (context, mode) {
+                      return const CupertinoActivityIndicator();
+                    },
+                  ),
+                  footer: CustomFooter(
+                    builder: (context, mode) {
+                      return const CupertinoActivityIndicator();
+                    },
+                  ),
+                  onRefresh: () async {
+                    await ref
+                        .read(githubRepositoryControllerProvider.notifier)
+                        .fetchRepositories(
+                          word: searchText.value,
+                          needToLoadState: false,
+                        );
+                    refreshController.value.refreshCompleted();
+                  },
+                  onLoading: () async {
+                    await ref
+                        .read(githubRepositoryControllerProvider.notifier)
+                        .fetchMore();
+                    refreshController.value.loadComplete();
+                  },
+                  child: ListView.separated(
                     controller: scrollController,
                     itemBuilder: (_, index) {
                       final item = items[index];
@@ -204,21 +204,21 @@ class GithubListPage extends HookConsumerWidget {
                       );
                     },
                     itemCount: items.length,
-                  );
-          },
-          error: (error, _) {
-            return const Center(
-              child: Text(
-                'Errorが発生しました 再度やり直してください',
-              ),
-            );
-          },
-          loading: () {
-            return const Center(
-              child: CupertinoActivityIndicator(),
-            );
-          },
-        ),
+                  ),
+                );
+        },
+        error: (error, _) {
+          return const Center(
+            child: Text(
+              'Errorが発生しました 再度やり直してください',
+            ),
+          );
+        },
+        loading: () {
+          return const Center(
+            child: CupertinoActivityIndicator(),
+          );
+        },
       ),
     );
   }
