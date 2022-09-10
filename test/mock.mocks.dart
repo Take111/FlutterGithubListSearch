@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:github_searcher_flutter/model/client/github_search_api_repository.dart'
+import 'package:github_searcher_flutter/model/repository/github_search_api_repository.dart'
     as _i2;
 import 'package:github_searcher_flutter/model/entity/repository.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
