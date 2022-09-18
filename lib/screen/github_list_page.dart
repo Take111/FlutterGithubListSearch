@@ -42,7 +42,7 @@ class GithubListPage extends HookConsumerWidget {
                   hintText: 'Search',
                 ),
               )
-            : const Text('Github List'),
+            : const Text('探す'),
         actions: [
           IconButton(
             onPressed: () {
