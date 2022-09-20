@@ -16,7 +16,13 @@ class RootPage extends HookConsumerWidget {
     ]);
 
     return Scaffold(
-      body: widgets.value.elementAt(selectedIndex.value),
+      body: IndexedStack(
+        index: selectedIndex.value,
+        children: const [
+          GithubListPage(),
+          FavoriteRepositoriesPage(),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
