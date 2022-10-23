@@ -17,6 +17,7 @@ class GithubListPage extends HookConsumerWidget {
     final repositories = ref.watch(githubRepositoryControllerProvider);
     final refreshController = useState(RefreshController());
     final scrollController = useScrollController();
+    final focusNode = useState(FocusNode());
 
     return Scaffold(
       appBar: AppBar(
@@ -41,11 +42,13 @@ class GithubListPage extends HookConsumerWidget {
                 decoration: const InputDecoration(
                   hintText: 'Search',
                 ),
+                focusNode: focusNode.value,
               )
             : const Text('探す'),
         actions: [
           IconButton(
             onPressed: () {
+              focusNode.value.requestFocus();
               isSearch.value = true;
             },
             icon: const Icon(Icons.search),
