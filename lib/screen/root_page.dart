@@ -10,10 +10,6 @@ class RootPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = useState(0);
-    final widgets = useState<List<Widget>>([
-      const GithubListPage(),
-      const FavoriteRepositoriesPage(),
-    ]);
 
     return Scaffold(
       body: IndexedStack(
